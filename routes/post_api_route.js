@@ -11,7 +11,19 @@ module.exports = app => {
     }
   });
 
-  app.post('/api/posts', (req, res) => {
-    console.log(req.body);
+  app.post('/api/posts', async (req, res) => {
+    const { title, coordinates, description } = req.body;
+    const newPost = new Posts({
+      title,
+      coordinates,
+      description,
+      _user: req.user.id
+    });
+    try {
+      await newPost.save();
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(400).send(e);
+    }
   });
 }
