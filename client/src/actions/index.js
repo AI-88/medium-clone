@@ -12,6 +12,17 @@ export const fetchCurrentUserData = () => async dispatch => {
   }
 };
 
+export const fetchPostsData = () => async dispatch => {
+  dispatch({ type: types.FETCH_POSTS_REQUEST, payload: true });
+  try {
+    const request = await axios.get('/api/posts');
+    const { data } = request;
+    dispatch({ type: types.FETCH_POSTS_SUCCESS, payload: data });
+  } catch (e) {
+    dispatch({ type: types.FETCH_POSTS_FAIL, payload: e });
+  }
+};
+
 export const addNewPost = values => async dispatch => {
   dispatch({ type: types.ADD_NEW_POST_REQUEST, payload: true });
   try {
