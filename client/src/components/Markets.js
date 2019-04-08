@@ -1,12 +1,39 @@
-import React from 'react';
-import AddMarketsForm from './AddMarketsForm';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchPostsData } from '../actions';
+import PostCard from './PostCard';
 
-const Markets = () => {
-  return (
-    <div>
-      <AddMarketsForm />
-    </div>
-  );
+class Markets extends Component {
+  componentDidMount() {
+    this.props.fetchPostsData();
+  }
+
+  renderPosts() {
+    const { data, isFetching } = this.props.posts;
+    if (isFetching) {
+      return <div>Loading...</div>;
+    }
+
+    if (data) {
+      return data.map(post => <PostCard key={post._id} data={post} />);
+    }
+
+    return null;
+  }
+
+  render() {
+    return (
+      <div>
+        {this.renderPosts()}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ posts }) => {
+  return {
+    posts
+  };
 };
 
-export default Markets;
+export default connect(mapStateToProps, { fetchPostsData })(Markets);
