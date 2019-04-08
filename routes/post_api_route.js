@@ -18,7 +18,8 @@ module.exports = app => {
       title,
       coordinates,
       description,
-      _user: req.user.id
+      _user: req.user.id,
+      timeAdded: Date.now()
     });
     try {
       await newPost.save();

@@ -14,7 +14,8 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  _user: { type: Schema.Types.ObjectId, ref: 'User' }
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
+  timeAdded: Number
 });
 
 mongoose.model('Post', postSchema);
