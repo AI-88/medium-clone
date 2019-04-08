@@ -1,8 +1,8 @@
 import { AUTH_USER_REQUEST, AUTH_USER_SUCCESS, AUTH_USER_FAIL } from '../actions/types';
 
 const INITIAL_STATE = {
-  data: [],
-  isFetching: false,
+  data: '',
+  isFetching: null,
   errorMsg: null
 };
 
@@ -11,7 +11,9 @@ const currentUserReducer = (state = INITIAL_STATE, { type, payload }) => {
     case AUTH_USER_REQUEST:
       return {
         ...state,
-        isFetching: payload
+        data: '',
+        isFetching: payload,
+        errorMsg: null
       };
     case AUTH_USER_SUCCESS:
       return {

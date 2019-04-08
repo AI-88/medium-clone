@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { fetchCurrentUserData } from '../actions';
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.fetchCurrentUserData();
+  }
+
   render() {
     console.log(this.props.currentUser);
     return (
