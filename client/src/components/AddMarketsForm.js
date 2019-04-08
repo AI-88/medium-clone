@@ -15,7 +15,7 @@ class AddMarketsForm extends Component {
       this.props.history.push('/markets');
     }
 
-    return null;
+    return;
   }
 
   formSubmit = async value => {
@@ -51,6 +51,12 @@ class AddMarketsForm extends Component {
       <Form onSubmit={handleSubmit(this.formSubmit)}>
         {this.renderInputItems()}
         <Button loading={submitting ? true : false} htmlType='submit'>Create Post</Button>
+        <Button
+          type='danger'
+          onClick={() => this.props.history.goBack()}
+        >
+          Back
+        </Button>
       </Form>
     );
   }
