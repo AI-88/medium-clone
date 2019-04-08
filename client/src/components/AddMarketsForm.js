@@ -9,15 +9,6 @@ const { Item } = Form;
 const { TextArea } = Input;
 
 class AddMarketsForm extends Component {
-  componentDidMount() {
-    const { data: { isAdmin } } = this.props.currentUser;
-    if (!isAdmin) {
-      this.props.history.push('/markets');
-    }
-
-    return;
-  }
-
   formSubmit = async value => {
     const { addNewPost, reset } = this.props;
     await addNewPost(value);
