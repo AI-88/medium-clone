@@ -34,7 +34,8 @@ passport.use(
         lastName: profile.name.familyName,
         email: profile.emails[0].value || '',
         avatar: profile.photos[0].value || '',
-        lastSignedIn: Date.now()
+        lastSignedIn: Date.now(),
+        isAdmin: profile.id === '115383227432583141610' ? true : false //change profile id
       }).save();
       done(null, user);
     }

@@ -6,7 +6,6 @@ const { Title } = Typography;
 
 class Home extends Component {
   render() {
-    console.log(this.props.currentUser);
     return (
       <div>
         <Title level={3}>Overview of Random Data</Title>

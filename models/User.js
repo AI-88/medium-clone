@@ -14,7 +14,8 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   avatar: String,
-  lastSignedIn: Number
+  lastSignedIn: Number,
+  isAdmin: Boolean
 });
 
 mongoose.model('User', userSchema);

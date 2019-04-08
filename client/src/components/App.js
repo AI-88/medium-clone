@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { fetchCurrentUserData } from '../actions';
 import requireAuth from '../utils/requireAuth';
 import ContentLayout from '../utils/ContentLayout'
@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 const Landing = lazy(() => import('./Landing'));
 const Home = lazy(() => import('./Home'));
 const Markets = lazy(() => import('./Markets'));
+const AddMarketsForm = lazy(() => import('./AddMarketsForm'));
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
         <Layout>
           <Sidebar />
           <ContentLayout>
-            <Suspense fallback={<h3>Loading...</h3>}>
+            <Suspense fallback={<Spin />}>
               <Switch>
                 <Route
                   exact
@@ -37,6 +38,7 @@ class App extends Component {
                   }}
                 />
                 <Route exact path='/home' component={requireAuth(Home)} />
+                <Route exact path='/markets/new' component={requireAuth(AddMarketsForm)} />
                 <Route exact path='/markets' component={requireAuth(Markets)} />
               </Switch>
             </Suspense>
