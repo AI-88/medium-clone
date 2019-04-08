@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Input, Form } from 'antd';
+import { addNewPost } from '../actions';
 
 const { Item } = Form;
 const { TextArea } = Input;
 
 class AddMarketsForm extends Component {
-  formSubmit(value) {
-    console.log(value);
+  formSubmit = value => {
+    this.props.addNewPost(value);
   }
 
   renderInput = ({ input }) => <Input {...input} autoComplete='off' />;
@@ -57,4 +60,4 @@ function validate(value) {
   return errors;
 };
 
-export default reduxForm({ validate, form: 'value' })(AddMarketsForm);
+export default compose(connect(null, { addNewPost }), reduxForm({ validate, form: 'value' }))(AddMarketsForm);
