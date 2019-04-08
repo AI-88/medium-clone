@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button } from 'antd';
+import AddMarketsForm from './AddMarketsForm';
 
 const Markets = () => {
   return (
-    <Button>Add Market</Button>
+    <div>
+      <AddMarketsForm />
+    </div>
   );
 };
 
