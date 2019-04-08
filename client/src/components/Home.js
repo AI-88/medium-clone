@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrentUserData } from '../actions';
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.fetchCurrentUserData();
-  }
-
   render() {
     console.log(this.props.currentUser);
     return (
@@ -21,4 +16,4 @@ const mapStateToProps = ({ currentUser }) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchCurrentUserData })(Home);
+export default connect(mapStateToProps)(Home);
