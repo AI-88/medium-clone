@@ -11,3 +11,13 @@ export const fetchCurrentUserData = () => async dispatch => {
     dispatch({ type: types.AUTH_USER_FAIL, payload: e });
   }
 };
+
+export const addNewPost = values => async dispatch => {
+  dispatch({ type: types.ADD_NEW_POST_REQUEST, payload: true });
+  try {
+    const request = await axios.post('/api/posts', values);
+    console.log(request.data);
+  } catch (e) {
+    dispatch({ type: types.ADD_NEW_POST_FAIL, payload: e });
+  }
+};
