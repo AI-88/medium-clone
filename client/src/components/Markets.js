@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPostsData } from '../actions';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import PostCard from './PostCard';
 
 class Markets extends Component {
@@ -13,11 +13,16 @@ class Markets extends Component {
   renderPosts() {
     const { data, isFetching } = this.props.posts;
     if (isFetching) {
-      return <div>Loading...</div>;
+      return <Spin />;
     }
 
     if (data) {
-      return data.map(post => <PostCard key={post._id} data={post} />);
+      return (
+        <div>
+          {data.map(post => <PostCard key={post._id} data={post} />)}
+          {this.renderAddPostBtn()}
+        </div>
+      );
     }
 
     return null;
@@ -38,10 +43,9 @@ class Markets extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.renderPosts()}
-        {this.renderAddPostBtn()}
-      </div>
+      </>
     );
   }
 }

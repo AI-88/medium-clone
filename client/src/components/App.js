@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { fetchCurrentUserData } from '../actions';
 import requireAuth from '../utils/requireAuth';
 import ContentLayout from '../utils/ContentLayout'
@@ -23,7 +23,7 @@ class App extends Component {
         <Layout>
           <Sidebar />
           <ContentLayout>
-            <Suspense fallback={<h3>Loading...</h3>}>
+            <Suspense fallback={<Spin />}>
               <Switch>
                 <Route
                   exact
