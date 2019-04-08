@@ -9,6 +9,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 require('./models/User');
+require('./models/Post');
 require('./services/passport');
 
 mongoose.Promise = global.Promise;
@@ -24,8 +25,8 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/test_route')(app);
 require('./routes/auth_route')(app);
+require('./routes/post_api_route')(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

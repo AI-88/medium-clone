@@ -1,4 +1,7 @@
 import React from 'react';
+import { Button, Typography } from 'antd';
+
+const { Title } = Typography;
 
 const styles = {
   container: {
@@ -6,8 +9,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#282c34',
-    color: '#ffffff',
     textAlign: 'center'
   }
 };
@@ -15,10 +16,8 @@ const styles = {
 const Landing = () => (
   <div style={styles.container}>
     <div>
-      <h1><span role='img' aria-label='computer-emoji'>💻</span> Welcome to Fullstack React Boilerplate</h1>
-      <h3>Edit <code>client/src/components/App.js</code> and save to reload.</h3>
-      <h3>Direct the users to <code>/auth/google</code> to authenticate them with Google.</h3>
-      <h3>See <code>package.json</code> for the full list of dependencies.</h3>
+      <Title level={2}><span role='img' aria-label='computer-emoji'>💻</span> Welcome to Limitless CMS</Title>
+      <Button href='/auth/google' block>Sign in with Google</Button>
     </div>
   </div>
 );
