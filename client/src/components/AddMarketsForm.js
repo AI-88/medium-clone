@@ -9,8 +9,10 @@ const { Item } = Form;
 const { TextArea } = Input;
 
 class AddMarketsForm extends Component {
-  formSubmit = value => {
-    this.props.addNewPost(value);
+  formSubmit = async value => {
+    const { addNewPost, reset } = this.props;
+    await addNewPost(value);
+    reset();
   }
 
   renderInput = ({ input }) => <Input {...input} autoComplete='off' />;
@@ -35,12 +37,11 @@ class AddMarketsForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit, submitting } = this.props;
     return (
       <Form onSubmit={handleSubmit(this.formSubmit)}>
         {this.renderInputItems()}
-        <Button htmlType='submit'>Create Post</Button>
+        <Button loading={submitting ? true : false} htmlType='submit'>Create Post</Button>
       </Form>
     );
   }
@@ -49,13 +50,13 @@ class AddMarketsForm extends Component {
 function validate(value) {
   const errors = {};
   if (!value.title) {
-    errors.title = 'Post title is required!'
+    errors.title = 'Post title is required!';
   }
   if (!value.coordinates) {
-    errors.coordinates = 'Coordinates are required!'
+    errors.coordinates = 'Coordinates are required!';
   }
   if (!value.description) {
-    errors.description = 'Description is required!'
+    errors.description = 'Description is required!';
   }
   return errors;
 };
