@@ -9,6 +9,7 @@ import Sidebar from './Sidebar';
 
 const Landing = lazy(() => import('./Landing'));
 const Home = lazy(() => import('./Home'));
+const Markets = lazy(() => import('./Markets'));
 
 class App extends Component {
   componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component {
                   }}
                 />
                 <Route exact path='/home' component={requireAuth(Home)} />
+                <Route exact path='/markets' component={requireAuth(Markets)} />
               </Switch>
             </Suspense>
           </ContentLayout>
