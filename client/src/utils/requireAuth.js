@@ -29,5 +29,5 @@ export default ChildComponent => {
     return { currentUser };
   };
 
-  return withRouter(connect(mapStateToProps, null)(ComposedComponent));
+  return connect(mapStateToProps, null)(ComposedComponent);
 }

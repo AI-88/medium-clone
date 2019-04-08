@@ -9,6 +9,15 @@ const { Item } = Form;
 const { TextArea } = Input;
 
 class AddMarketsForm extends Component {
+  componentDidMount() {
+    const { data: { isAdmin } } = this.props.currentUser;
+    if (!isAdmin) {
+      this.props.history.push('/markets');
+    }
+
+    return null;
+  }
+
   formSubmit = async value => {
     const { addNewPost, reset } = this.props;
     await addNewPost(value);
@@ -61,4 +70,10 @@ function validate(value) {
   return errors;
 };
 
-export default compose(connect(null, { addNewPost }), reduxForm({ validate, form: 'value' }))(AddMarketsForm);
+const mapStateToProps = ({ currentUser }) => {
+  return {
+    currentUser
+  };
+};
+
+export default compose(connect(mapStateToProps, { addNewPost }), reduxForm({ validate, form: 'value' }))(AddMarketsForm);
