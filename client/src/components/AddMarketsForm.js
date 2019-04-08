@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Input, Form } from 'antd';
 import { addNewPost } from '../actions';
@@ -73,4 +74,4 @@ const mapStateToProps = ({ currentUser }) => {
   };
 };
 
-export default compose(connect(mapStateToProps, { addNewPost }), reduxForm({ validate, form: 'value' }))(AddMarketsForm);
+export default compose(withRouter, connect(mapStateToProps, { addNewPost }), reduxForm({ validate, form: 'value' }))(AddMarketsForm);
